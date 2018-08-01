@@ -1,3 +1,9 @@
+var mipConfig = {
+    MIP_SERVER_IP: "192.168.1.1",
+    MIP_SERVER_PORT: "7200",
+    WallName:"KFWall"
+};
+
 var sourceConfig = {
     source01: {
         channel: 1,
@@ -23,7 +29,7 @@ var sourceConfig = {
 };
 
 var windowConfig = {
-    plan01: {
+    preset01: {
         window01: {
             x: 0,
             y: 0,
@@ -67,7 +73,7 @@ var windowConfig = {
             source: sourceConfig.source01
         }
     },
-    plan02: {
+    preset02: {
         window01: {
             x: 0,
             y: 0,
@@ -111,7 +117,7 @@ var windowConfig = {
             source: sourceConfig.source01
         }
     },
-    plan03: {
+    preset03: {
         window01: {
             x: 0,
             y: 0,
@@ -155,7 +161,7 @@ var windowConfig = {
             source: sourceConfig.source01
         }
     },
-    plan04: {
+    preset04: {
         window01: {
             x: 0,
             y: 0,
@@ -199,7 +205,7 @@ var windowConfig = {
             source: sourceConfig.source01
         }
     },
-    plan05: {
+    preset05: {
         window01: {
             x: 0,
             y: 0,
@@ -243,7 +249,7 @@ var windowConfig = {
             source: sourceConfig.source01
         }
     },
-    plan06: {
+    preset06: {
         window01: {
             x: 0,
             y: 0,
@@ -289,5 +295,6 @@ var windowConfig = {
     },
 };
 
+module.exports.mipConfig = mipConfig;
 module.exports.windowConfig = windowConfig;
 module.exports.sourceConfig = sourceConfig;

@@ -1,26 +1,25 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config');
+var restApi = require('./restInterface');
 
 var isPlaying = false;
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', {
-    title: 'Express'
+router.post('/switchPreset', function (req, res) {
+  var data = req.body || {};
+  console.log(data);
+  restApi.httpRequest({}, 'POST', '/api/v1/presets/' + data.presetName, function (data) {
+    if (!data.success) {
+      res.send(data);
+      res.end();
+    } else {
+      res.send(data.restReturnedData);
+      res.end();
+    }
   });
 });
 
-router.post('/switchPlan', function (req, res) {
-  var data = req.body || {};
-  console.log(data.planID);
-
-  console.log(JSON.stringify(config.windowConfig[data.planID]));
-
-  res.send(JSON.stringify(config.windowConfig[data.planID]));
-});
-
-router.post('/switchSignal', function (req, res) {
+router.post('/switchSource', function (req, res) {
   console.log(req.body);
   var data = {
 
@@ -30,7 +29,17 @@ router.post('/switchSignal', function (req, res) {
 });
 
 router.post('/openTemWindow', function (req, res) {
-
+  var data = req.body;
+  console.log(data);
+  restApi.httpRequest({}, 'POST', '/api/v1/walls/' + config.mipConfig.WallName + '/windows/window', function (data) {
+    if (!data.success) {
+      res.send(data);
+      res.end();
+    } else {
+      res.send(data.restReturnedData);
+      res.end();
+    }
+  });
 });
 
 router.post('/closeTemWindow', function (req, res) {
