@@ -1,7 +1,9 @@
 var mipConfig = {
     MIP_SERVER_IP: "192.168.1.1",
     MIP_SERVER_PORT: "7200",
-    WallName:"KFWall"
+    user: "api",
+    password: "newway123",
+    WallName: "KFWall"
 };
 
 var sourceConfig = {
@@ -12,12 +14,12 @@ var sourceConfig = {
             ip: "10.1.1.10"
         }
     },
-    source02: "",
-    source03: "",
-    source04: "",
+    source02: "test02",
+    source03: "test03",
+    source04: "test04",
     source05: "",
     source06: "",
-    source07: "",
+    source07: "HK-IPC",
     source08: "",
     source09: "",
     source10: "",
@@ -35,14 +37,14 @@ var windowConfig = {
             y: 0,
             width: 3840,
             height: 1620,
-            source: sourceConfig.source01
+            source: [sourceConfig.source02, sourceConfig.source03, sourceConfig.source04]
         },
         window02: {
             x: 3840,
             y: 0,
             width: 3840,
             height: 1620,
-            source: sourceConfig.source01
+            source: [sourceConfig.source03, sourceConfig.source04]
         },
         window03: {
             x: 7680,

@@ -1,13 +1,11 @@
-
+## 集控接口文档
 - [集控接口文档](#集控接口文档)
   - [切换预案](#切换预案)
   - [切换信号源](#切换信号源)
   - [临时开窗](#临时开窗)
-  - [关闭临时窗口](#关闭临时窗口)
+  - [关闭窗口](#关闭窗口)
   - [暂停轮播](#暂停轮播)
   - [继续轮播](#继续轮播)
-
-## 集控接口文档
 
 ### 切换预案
 
@@ -29,15 +27,25 @@
 
  ```json
  { 
-    "presetName" : "xx" 
+    "presetName" : "preset02" 
  } 
  ```
 
 
  **返回参数**
 
-```
-//待添加
+```json
+{
+  "success": true,
+  "uri": "http://10.0.0.252:8899/api/v1/presets/preset02",
+  "messages": [
+    "Action [清空墙], executed successfully!",
+    "Action [延迟50]：  executed successfully!",
+    "Action [调用预案交互双屏], executed successfully!",
+    "Action [关屏], executed successfully!",
+    "Action [关灯], executed successfully!"
+  ]
+}
 ```
 
 ---
@@ -63,15 +71,15 @@
 
  ``` json
 {
-  "presetName": "xx",
+  "presetName": "preset01",
   "source": [
     {
-      "windowID": "xx",
-      "sourceID": ["xx","xxx"]
+      "windowID": "window01",
+      "sourceID": ["source02","source03"]
     },
     {
-      "windowID": "xx",
-      "sourceID": ["xx","xxx"]
+      "windowID": "window02",
+      "sourceID": ["source04"]
     }
   ]
 }
@@ -113,7 +121,7 @@
   "y": 0,
   "width": 960,
   "height": 540,
-  "source": "HK-IPC"
+  "source": "source07"
 }
  ```
 
@@ -122,7 +130,7 @@
 ```json
 {
   "success": true,
-  "uri": "http://10.0.0.252:8899/api/v1/walls/NewwayDemo/windows/window",
+  "uri": "http://10.0.0.252:8899/api/v1/walls/KFWall/windows/window",
   "messages": [
     "Add new window [source=HK-IPC, x=0,y=0,width=960,height=540]"
   ]
@@ -131,11 +139,11 @@
 
 ---
 
-### 关闭临时窗口
+### 关闭窗口
 
 **请求URL：**
 
-- ` /closeTemWindow `
+- ` /closeWindow `
 
 **请求方式：**
 
@@ -147,21 +155,31 @@
 |:---:|:--:|:--:|:-:|
 |x |是  |string |x坐标 |
 |y |是  |string |y坐标 |
+|width |是  |string |窗口宽度 |
+|height |是  |string |窗口高度 |
 
  **请求参数**
 
  ```json
 {
-  "x": 800,
-  "y": 600
+  "x": 0,
+  "y": 0,
+  "width": 960,
+  "height": 540
 }
  ```
 
 
  **返回参数**
 
-```
-//待添加
+```json
+{
+  "success": true,
+  "uri": "http://10.0.0.252:8899/api/v1/walls/KFWall/windows/window",
+  "messages": [
+    "Delete window at [source=HK-IPC, x=0,y=0,width=960,height=540]"
+  ]
+}
 ```
 
 
@@ -174,7 +192,7 @@
 
 **请求方式：**
 
-- GET 
+- POST 
 
  **返回参数**
 
@@ -192,7 +210,7 @@
 
 **请求方式：**
 
-- GET 
+- POST 
 
  **返回参数**
 

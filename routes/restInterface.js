@@ -9,6 +9,7 @@ var httpRequest = function (requestdata, method, url, callback) {
     var options = {
         hostname: config.MIP_SERVER_IP,
         port: config.MIP_SERVER_PORT,
+        auth: config.user + ':' + config.password,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8', //"application/json;charset=UTF-8"  x-www-form-urlencoded
             'Content-Length': Buffer.byteLength(requestdata)
@@ -23,6 +24,7 @@ var httpRequest = function (requestdata, method, url, callback) {
         if (httpres.statusCode == '200') {
             logger.info("http request success.");
         }
+
         var chunks = [];
         var size = 0;
         httpres.on('data', function (data) {
@@ -54,7 +56,7 @@ var httpRequest = function (requestdata, method, url, callback) {
                 if (!dataObj.error) {
                     callback({
                         success: true,
-                        restReturnedData: dataObj
+                        messages: dataObj
                     });
                 } else {
                     callback({
